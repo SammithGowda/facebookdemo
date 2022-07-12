@@ -1,5 +1,30 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "../App.css";
+import { clear } from "@testing-library/user-event/dist/clear";
 export const Home = () => {
+  const [text, setText] = useState("");
+  const [gifdata, setGifdata] = useState([]);
+  //   console.log(gifdata);
+  useEffect(() => {
+    getgifdata();
+  }, [text]);
+  const getgifdata = () => {
+    // setGifdata([]);
+    if (!text) return;
+    // console.log(text);
+    axios
+      .get(
+        `https://api.giphy.com/v1/gifs/search?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&q=${text}`
+      )
+      .then((res) => setGifdata(res.data.data));
+  };
+  const clear = (e) => {
+    if (e.key === "Backspace") {
+      setGifdata([]);
+    }
+  };
+  console.log(gifdata, "gifdata");
   return (
     <div className="main_div">
       <div className="app_name">
@@ -39,7 +64,12 @@ export const Home = () => {
                 />
                 Check in
               </button>
-              <button onClick={() => alert("yes")}>
+              <button
+                onClick={() =>
+                  (document.getElementsByClassName("modal")[0].style.display =
+                    "block")
+                }
+              >
                 <img
                   style={{ marginRight: "5px" }}
                   src="./gif.png"
@@ -59,6 +89,38 @@ export const Home = () => {
                 Tag Event
               </button>
             </div>
+
+            {/* button modal */}
+            <div class="modal">
+              <div className="modal-content">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  onChange={(e) => setText(e.target.value)}
+                  onKeyDown={(e) => clear(e)}
+                />
+                <div
+                  className="gif_content"
+                  onClick={() =>
+                    (document.getElementsByClassName("modal")[0].style.display =
+                      "none")
+                  }
+                >
+                  {gifdata.map((el) => (
+                    <>
+                      <img
+                        onClick={() => alert(el.images.fixed_height.url)}
+                        src={el.images.fixed_height.url}
+                        width={"50%"}
+                        height={"100px"}
+                        alt=""
+                      />
+                    </>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* button modal */}
           </div>
         </div>
       </div>
