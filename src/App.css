@@ -1,0 +1,72 @@
+.main_div {
+  border: 2px solid yellow;
+  width: 70%;
+  height: 500px;
+  margin: auto;
+}
+.app_name {
+  text-align: center;
+}
+.second_container {
+  /* border: 2px solid red; */
+  display: flex;
+  gap: 10px;
+}
+.personal_details_div {
+  /* border: 2px solid red; */
+  flex: 1;
+}
+.post_div {
+  border: 2px solid yellow;
+  flex: 3;
+  /* height: 150px; */
+  margin-top: 20px;
+}
+.personal_details_div > img {
+  height: 70%;
+  width: 60%;
+  margin: 10px 0px 0px 50px;
+  border-radius: 50%;
+}
+
+.personal_details_div > p {
+  text-align: center;
+}
+.post_input_div {
+  border: 1px solid black;
+  height: 50px;
+  display: flex;
+  gap: 8px;
+}
+.post_input_div > img {
+  width: 8%;
+  height: 95%;
+  border-radius: 50%;
+  margin: 2px 0px 0px 10px;
+}
+.post_input_div > input {
+  width: 100%;
+  height: 80%;
+  margin-top: 3px;
+}
+.buttons_div {
+  width: 70%;
+  /* height: 60px; */
+  margin: auto;
+  border: 2px solid red;
+}
+.buttons_inside_div {
+  width: 80%;
+  /* height: 20px; */
+  margin: auto;
+  margin-top: 20px;
+  /* border: 2px solid blue; */
+}
+.buttons_inside_div > button {
+  width: 40%;
+  margin: 10px;
+  border-radius: 5px;
+  border: none;
+  height: 25px;
+  text-align: left;
+}
