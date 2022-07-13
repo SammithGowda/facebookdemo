@@ -2,7 +2,6 @@ body {
   background-color: lightblue;
 }
 .main_div {
-  /* border: 2px solid yellow; */
   width: 70%;
   margin: auto;
 }
@@ -17,12 +16,10 @@ body {
   gap: 10px;
 }
 .personal_details_div {
-  /* border: 2px solid red; */
   flex: 1;
   margin-top: 10px;
 }
 .post_div {
-  /* border: 2px solid yellow; */
   flex: 3;
   margin-top: 10px;
 }
@@ -37,7 +34,6 @@ body {
   text-align: center;
 }
 .post_input_div {
-  /* border: 1px solid black; */
   width: 95%;
   height: 50px;
   display: flex;
@@ -58,17 +54,13 @@ body {
 }
 .buttons_div {
   width: 70%;
-  /* height: 60px; */
   display: block;
   margin: auto;
-  /* border: 2px solid red; */
 }
 .buttons_inside_div {
   width: 80%;
-  /* height: 20px; */
   margin: auto;
   margin-top: 20px;
-  /* border: 2px solid blue; */
 }
 .buttons_inside_div > button {
   width: 40%;
@@ -78,47 +70,38 @@ body {
   height: 25px;
   text-align: left;
 }
-/* The Modal (background) */
 .modal {
-  /* border: 2px solid red; */
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  /* Location of the box */
-  /* border: 2px solid blue; */
+  display: none;
+  position: fixed;
+  z-index: 1;
 
   left: 44%;
   top: 35%;
   width: 20%;
   height: 50%;
-  /* border: 2px solid red; */
-  /* Full width */
-  /* Full height */
-  /* Enable scroll if needed */
-  /* background-color: rgb(0, 0, 0); */
-  /* background-color: rgba(0, 0, 0, 0.4);  */
 }
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
   margin: auto;
-  /* border: 1px solid red; */
+  border: 1px solid black;
   height: 100%;
 }
 .modal-content > input {
   width: 90%;
   height: 30px;
-  /* text-align: center; */
   margin: 5px 0px 0px 15px;
 }
 .gif_content {
   width: 100%;
-  height: 100%;
+  height: 85%;
   margin: auto;
-  /* border: 2px solid black; */
   margin-top: 10px;
   overflow: scroll;
   text-align: center;
+}
+.gif_content::-webkit-scrollbar {
+  display: none;
 }
 .upload_post_div {
   border: 2px solid transparent;
@@ -128,16 +111,13 @@ body {
   margin-top: 20px;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 .header_div {
-  /* border: 2px solid red; */
   width: 90%;
   margin: 8px 0px 8px 10px;
 
   display: flex;
   gap: 10px;
-  /* background-color: aqua; */
 }
 .header_div > img {
   width: 8%;
@@ -146,7 +126,6 @@ body {
   margin: 2px 0px 0px 10px;
 }
 .gif_container {
-  /* border: 2px solid green; */
   width: 70%;
   height: 250px;
   margin: auto;

@@ -6,18 +6,23 @@ export const Home = () => {
   const [enterd_gif, setEnterd_gif] = useState("");
   const [gifdata, setGifdata] = useState([]);
   const [displaydata, setDisplaydata] = useState([]);
-  //   console.log(gifdata);
+
   useEffect(() => {
     getgifdata();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enterd_gif]);
-  const getgifdata = () => {
-    // setGifdata([]);
-    if (!enterd_gif) return;
-    // console.log(text);
+  const random = () => {
     axios
       .get(
-        `https://api.giphy.com/v1/gifs/search?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&q=${enterd_gif}`
+        `https://api.giphy.com/v1/stickers/trending?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&limit=6`
+      )
+      .then((res) => setGifdata(res.data.data));
+  };
+  const getgifdata = () => {
+    if (!enterd_gif) return;
+    axios
+      .get(
+        `https://api.giphy.com/v1/gifs/search?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&q=${enterd_gif}&limit=15`
       )
       .then((res) => setGifdata(res.data.data));
   };
@@ -73,7 +78,7 @@ export const Home = () => {
               <button
                 onClick={() =>
                   (document.getElementsByClassName("modal")[0].style.display =
-                    "block")
+                    "block")(random())
                 }
               >
                 <img
