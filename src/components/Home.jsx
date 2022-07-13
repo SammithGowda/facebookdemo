@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../App.css";
-import { clear } from "@testing-library/user-event/dist/clear";
 export const Home = () => {
-  const [text, setText] = useState("");
+  const [post, setPost] = useState("");
+  const [enterd_gif, setEnterd_gif] = useState("");
   const [gifdata, setGifdata] = useState([]);
+  const [displaydata, setDisplaydata] = useState([]);
   //   console.log(gifdata);
   useEffect(() => {
     getgifdata();
-  }, [text]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enterd_gif]);
   const getgifdata = () => {
     // setGifdata([]);
-    if (!text) return;
+    if (!enterd_gif) return;
     // console.log(text);
     axios
       .get(
-        `https://api.giphy.com/v1/gifs/search?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&q=${text}`
+        `https://api.giphy.com/v1/gifs/search?api_key=nr8XmV69fFVJyrtLemHNFEfcRo93yOMY&q=${enterd_gif}`
       )
       .then((res) => setGifdata(res.data.data));
   };
@@ -24,7 +26,7 @@ export const Home = () => {
       setGifdata([]);
     }
   };
-  console.log(gifdata, "gifdata");
+  console.log(displaydata, "displaydata");
   return (
     <div className="main_div">
       <div className="app_name">
@@ -33,12 +35,16 @@ export const Home = () => {
       <div className="second_container">
         <div className="personal_details_div">
           <img className="profile_pic" src="./blank-profile.webp" alt="" />
+          <p>Name</p>
           <p>Leonardo Dicaprio</p>
+          <p>DD/MM/YYYY</p>
         </div>
         <div className="post_div">
           <div className="post_input_div">
             <img src="./blank-profile.webp" alt="" />
             <input
+              value={post}
+              onChange={(e) => setPost(e.target.value)}
               type="text"
               placeholder="Write something here...ಇಲ್ಲಿ ಏನಾದರು ಬರೆಯಿರಿ..."
             />
@@ -96,23 +102,30 @@ export const Home = () => {
                 <input
                   type="text"
                   placeholder="Search"
-                  onChange={(e) => setText(e.target.value)}
+                  onChange={(e) => setEnterd_gif(e.target.value)}
                   onKeyDown={(e) => clear(e)}
                 />
+
                 <div
                   className="gif_content"
                   onClick={() =>
                     (document.getElementsByClassName("modal")[0].style.display =
-                      "none")
+                      "none")(setPost(""))
                   }
                 >
                   {gifdata.map((el) => (
                     <>
                       <img
-                        onClick={() => alert(el.images.fixed_height.url)}
+                        onClick={() => {
+                          let obj = {
+                            Post_name: post,
+                            Gif_url: el.images.fixed_height.url,
+                          };
+                          setDisplaydata([...displaydata, obj]);
+                        }}
                         src={el.images.fixed_height.url}
-                        width={"50%"}
-                        height={"100px"}
+                        width={"90%"}
+                        height={"200px"}
                         alt=""
                       />
                     </>
@@ -122,6 +135,24 @@ export const Home = () => {
             </div>
             {/* button modal */}
           </div>
+          {/* posts */}
+          {gifdata.length !== 0 ? (
+            <div className="upload_post_div">
+              {displaydata.map((el) => (
+                <>
+                  <div className="header_div">
+                    <img src="./blank-profile.webp" alt="" />
+                    <p>{el.Post_name}</p>
+                  </div>
+                  <div className="gif_container">
+                    <img src={el.Gif_url} width={"90%"} height={"90%"} alt="" />
+                  </div>
+                </>
+              ))}
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>
